@@ -9,9 +9,10 @@ export default function Portfolio() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `https://web-dashboard-yoliday-g988odr5d-spyroars-projects.vercel.app/data`
-        );
+        // url_backend =
+        //   "https:web-dashboard-yoliday-g988odr5d-spyroars-projects.vercel.app";
+       let local_url = "http://localhost:3001";
+        const response = await fetch(`${local_url}/data`);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
