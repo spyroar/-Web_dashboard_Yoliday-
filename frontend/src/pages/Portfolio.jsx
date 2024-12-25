@@ -9,13 +9,13 @@ export default function Portfolio() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/");
+        const response = await fetch(`http://localhost:3001/data`);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const jsonData = await response.json();
         setData(jsonData);
-        copySetData(jsonData)
+        copySetData(jsonData);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -25,13 +25,14 @@ export default function Portfolio() {
   }, []);
   const handleSearchChange = (event) => {
     const term = event.target.value.toLowerCase();
-    const oldData=[...copydata];
-    const filteredData = oldData.filter((item) =>
-      item.title.toLowerCase().includes(term)||
-      item.price.toLowerCase().includes(term)||
-      item.description.toLowerCase().includes(term)
+    const oldData = [...copydata];
+    const filteredData = oldData.filter(
+      (item) =>
+        item.title.toLowerCase().includes(term) ||
+        item.price.toLowerCase().includes(term) ||
+        item.description.toLowerCase().includes(term)
     );
-    setData(filteredData)
+    setData(filteredData);
   };
 
   return (
@@ -43,7 +44,6 @@ export default function Portfolio() {
             type="text"
             placeholder="Search a project"
             className="w-full pl-10 pr-4 py-2 border rounded-lg"
-           
             onChange={handleSearchChange}
           />
         </div>
